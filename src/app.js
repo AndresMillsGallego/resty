@@ -1,6 +1,6 @@
 import React from 'react';
 import './app.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Let's talk about using index.js and some other name in the component folder
@@ -14,28 +14,32 @@ function App() {
 
   let [data, setData] = useState(null);
   let [requestParams, setRequestParams] = useState({});
+  
+  useEffect(async () => {
+    if (requestParams.method === 'get') {
+      try {
+        console.log('GET request initiated!!')
+        let results = await axios.get(requestParams.url);
+        setData({
+          count: results.data.count,
+          headers: results.headers,
+          results: results.data.results,
+        })
+      } catch (error) {
+        console.log('Error with your GET request', error.message)
+      }
+    }
+    
+  }, [requestParams.url]);
+
 
   const callApi = (requestParams) => {
     let url = requestParams.url;
     let method = requestParams.method;
-
+    console.log(requestParams)
     setRequestParams(requestParams)
-    getResults(method, url);
   }
-  async function getResults(method, url) {
-    try {
-      let results = await axios.get(url);
-      console.log(results)
-      setData({
-        count: results.data.count,
-        headers: results.headers,
-        results: results.data.results,
-      })
-
-    } catch (error) {
-      console.log('Error with the GET request')
-    }
-  }
+  
 
   return (
     <React.Fragment>

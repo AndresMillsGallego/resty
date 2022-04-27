@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import './results.scss';
+import JSONPretty from 'react-json-pretty';
+
+import 'react-json-pretty/themes/adventure_time.css';
 
 function Results(props) {
 
@@ -11,7 +14,7 @@ function Results(props) {
   return (
     <section>
       <button onClick={handleClear} className={props.data ? 'showButton' : 'hidden'}>Clear Results</button>
-      <pre className={props.data ? 'showResults' : null}>{props.data ? JSON.stringify(props.data, null, '\t') : null}</pre>
+      <pre className={props.data ? 'showResults' : null}>{props.data ? <JSONPretty id='json-pretty' data={JSON.stringify(props.data)}></JSONPretty>  : null}</pre>
     </section>
   );
 }
