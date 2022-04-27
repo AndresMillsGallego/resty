@@ -10,7 +10,6 @@ function Form({ handleApiCall }) {
   let [requestBody, setRequestBody] = useState({});
 
   const handleMethod = (e) => {
-    console.log(isSelected)
     setMethod(e.target.id);
     setSelected(true)
   }
@@ -22,6 +21,7 @@ function Form({ handleApiCall }) {
   const handleJsonInput = (e) => {
     setRequestBody(e.target.value)
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
@@ -41,7 +41,7 @@ function Form({ handleApiCall }) {
           <label id='input'>
             <span>URL: </span>
             <input name='url' type='text' onChange={handleInput}/>
-            <button type="submit">GO!</button>
+            <button data-testid="go-button" type="submit">GO!</button>
           </label>
         </div>
         <div>
@@ -54,7 +54,7 @@ function Form({ handleApiCall }) {
         </div>
         <div id='jsonInput'>
         <textarea name="jsonData" type="text" 
-        className={isSelected && method === 'POST' || method === 'PUT' ? 'active' : 'hidden'}
+        className={isSelected && method === 'post' || method === 'put' ? 'active' : 'hidden'}
         onChange={handleJsonInput}
         />
         </div>

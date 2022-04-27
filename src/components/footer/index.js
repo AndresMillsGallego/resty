@@ -13,7 +13,7 @@ function Footer() {
   return (
 
     <footer>
-      <p onClick={handleClick} id="me">Andres Mills Gallego &copy; 2018</p>
+      <p onClick={handleClick} id="me">Andres Mills Gallego &copy; 2022</p>
       <p className={show ? 'showPath' : 'hidden'}>➡ 👟 ➡ 👟 ➡ 👟 ➡ 👟 ➡ 👟 ➡ 👟 ➡ 👟 ➡ 👟 ➡ 👟</p>
       <div id='links'>
         <a href='https://github.com/AndresMillsGallego'>GitHub</a>
