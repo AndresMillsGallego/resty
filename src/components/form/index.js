@@ -1,15 +1,37 @@
 import React from 'react';
 import './form.scss';
+import { useState } from 'react';
 
-function Form(props) {
+function Form({ handleApiCall }) {
 
+  let [method, setMethod] = useState('');
+  let [url, setUrl] = useState('');
+  let [isSelected, setSelected] = useState(false);
+  let [requestBody, setRequestBody] = useState({});
+
+  const handleMethod = (e) => {
+    console.log(isSelected)
+    setMethod(e.target.id);
+    setSelected(true)
+  }
+
+  const handleInput = (e) => {
+    setUrl(e.target.value)
+  }
+
+  const handleJsonInput = (e) => {
+    setRequestBody(e.target.value)
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
-      method: 'GET',
-      url: 'https://pokeapi.co/api/v2/pokemon',
+      method: method,
+      url: url,
+      requestBody: requestBody,
     };
-    props.handleApiCall(formData);
+    
+    setSelected(false)
+    handleApiCall(formData);
   };
 
   return (
@@ -18,17 +40,23 @@ function Form(props) {
         <div>
           <label id='input'>
             <span>URL: </span>
-            <input name='url' type='text' />
+            <input name='url' type='text' onChange={handleInput}/>
             <button type="submit">GO!</button>
           </label>
         </div>
         <div>
           <label className="methods">
-            <span id="get">GET</span>
-            <span id="post">POST</span>
-            <span id="put">PUT</span>
-            <span id="delete">DELETE</span>
+            <span id="get" className={isSelected && method === 'get' ? 'active' : null} onClick={handleMethod}>GET</span>
+            <span id="post" className={isSelected && method === 'post'? 'active' : null} onClick={handleMethod}>POST</span>
+            <span id="put" className={isSelected && method === 'put'? 'active' : null} onClick={handleMethod}>PUT</span>
+            <span id="delete" className={isSelected && method === 'delete'? 'active' : null} onClick={handleMethod}>DELETE</span>
           </label>
+        </div>
+        <div id='jsonInput'>
+        <textarea name="jsonData" type="text" 
+        className={isSelected && method === 'POST' || method === 'PUT' ? 'active' : 'hidden'}
+        onChange={handleJsonInput}
+        />
         </div>
       </form>
     </>

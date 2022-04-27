@@ -22,6 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin: auto;
   }
 
   footer {
@@ -50,4 +51,13 @@ section {
 section div {
   padding: 1rem;
   font-size: 1.5rem;
+}
+
+.showParams {
+  color: darkblue;
+  font-size: 1.25rem;
+  border: 5px solid darkgray;
+  border-radius: 5px;
+  padding: 1rem;
+  background-color:ghostwhite;
 }
