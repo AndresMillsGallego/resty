@@ -1,8 +1,10 @@
-section {
+.showResults {
   color: darkblue;
   font-size: 1.25rem;
-  // border: 5px solid darkgray;
+  border: 5px solid darkgray;
   border-radius: 5px;
   padding: 1rem;
-  // background-color:ghostwhite;
+  background-color:ghostwhite;
+  max-height: 50vh;
+  overflow:auto;
 }

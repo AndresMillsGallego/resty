@@ -1,0 +1,21 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-family: cursive;
+}
+
+a {
+  margin-right: 1rem;
+}
+
+#me:hover, a:hover {
+  cursor: pointer;
+  color:fuchsia;
+}
+
+.showPath {
+  font-size: 1.5rem;
+  word-spacing: 1rem;
+}
