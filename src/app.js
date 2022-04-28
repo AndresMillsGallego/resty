@@ -16,7 +16,7 @@ function App() {
   let [requestParams, setRequestParams] = useState({});
   
   useEffect(async () => {
-    if (requestParams.method === 'get') {
+    if (requestParams.method) {
       try {
         console.log('GET request initiated!!')
         let results = await axios.get(requestParams.url);

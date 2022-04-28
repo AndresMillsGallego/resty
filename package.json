@@ -6,7 +6,9 @@
   "main": "src/index.js",
   "homepage": "https://andresmillsgallego.github.io/resty/",
   "dependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^14.1.1",
     "axios": "^0.27.1",
     "gh-pages": "^3.2.3",
     "msw": "^0.39.2",

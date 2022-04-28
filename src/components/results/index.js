@@ -14,7 +14,7 @@ function Results(props) {
   return (
     <section>
       <button onClick={handleClear} className={props.data ? 'showButton' : 'hidden'}>Clear Results</button>
-      <pre className={props.data ? 'showResults' : null}>{props.data ? <JSONPretty id='json-pretty' data={JSON.stringify(props.data)}></JSONPretty>  : null}</pre>
+      <pre aria-label='results' className={props.data ? 'showResults' : null}>{props.data ? <JSONPretty aria-label="results" id='json-pretty' data={JSON.stringify(props.data)}></JSONPretty>  : null}</pre>
     </section>
   );
 }

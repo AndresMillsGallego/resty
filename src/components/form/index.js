@@ -40,13 +40,13 @@ function Form({ handleApiCall }) {
         <div>
           <label id='input'>
             <span>URL: </span>
-            <input name='url' type='text' onChange={handleInput}/>
+            <input name='url' type='text' data-testid="test-url" onChange={handleInput}/>
             <button data-testid="go-button" type="submit">GO!</button>
           </label>
         </div>
         <div>
           <label className="methods">
-            <span id="get" className={isSelected && method === 'get' ? 'active' : null} onClick={handleMethod}>GET</span>
+            <span id="get" data-testid="test-method" className={isSelected && method === 'get' ? 'active' : null} onClick={handleMethod}>GET</span>
             <span id="post" className={isSelected && method === 'post'? 'active' : null} onClick={handleMethod}>POST</span>
             <span id="put" className={isSelected && method === 'put'? 'active' : null} onClick={handleMethod}>PUT</span>
             <span id="delete" className={isSelected && method === 'delete'? 'active' : null} onClick={handleMethod}>DELETE</span>
