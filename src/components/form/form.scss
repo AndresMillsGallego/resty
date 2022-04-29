@@ -13,8 +13,10 @@ form {
 
     &.methods {
       span {
+        width: 100%;
         cursor: pointer;
-        margin-right: 1.25rem;
+        margin-right: 1rem;
+        margin-left: 1rem;
         padding: .25rem .5rem;
         background:dodgerblue;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -29,11 +31,17 @@ form {
   }
 }
 
-button {
+#input button {
   color: red;
-  margin-left: 10px;
- padding: .25rem .5rem;
+  margin-left: 20px;
+  padding: .25rem .5rem;
 }
+
+#input button:hover {
+  cursor: pointer;
+  background: hotpink;
+  color: honeydew;
+} 
 
 #input span {
   color: red;

@@ -9,6 +9,10 @@
   overflow:auto;
 }
 
+.showButton {
+  margin-bottom: 2rem;
+}
+
 .history-results {
   margin: auto;
   color: navy;
@@ -30,4 +34,10 @@ button {
   width: 75%;
   margin: auto;
   border-radius: 3px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: hotpink;
+  color: honeydew;
 }

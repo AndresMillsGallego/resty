@@ -1,5 +1,6 @@
 import { act } from "react-dom/test-utils";
 import { initialState, reducer } from "../app";
+import '@testing-library/jest-dom'
 
 describe('Testing our brand new shiny reducer!', () => {
   let state = null;

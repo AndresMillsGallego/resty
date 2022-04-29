@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom'
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import App from '../app'
@@ -34,10 +35,10 @@ describe('Testing our main App and API call', () => {
     fireEvent.click(goButton);
   
     
-    // let results = await screen.findByText(/'count'/);
-    // console.log(results)
-    // expect(results).toBeTruthy();
-    // expect(results).toBeInTheDocument(); 
+    let results = await screen.findByText(/count/);
+    console.log(results)
+    expect(results).toBeTruthy();
+    expect(results).toBeInTheDocument(); 
   
   });
 

@@ -32,8 +32,6 @@ export const reducer = (state = initialState, action) => {
 
 function App() {
 
-  let [data, setData] = useState(null);
-  let [requestParams, setRequestParams] = useState({});
 
   let [state, dispatch] = useReducer(reducer, initialState);
 
