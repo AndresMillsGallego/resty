@@ -86,3 +86,50 @@ library to beautify my rendered `JSON`
 - Application fetches data from the URL given, with the method specified
 - Displays the response headers and results separately
 - Both headers and results should be “pretty printed” JSON
+
+## Lab 29
+
+This lab was all about the `useReducer` hook.  
+The more I learn about hooks and functional components, the more I like!  This seems like a much better way to manage state. 
+
+### User Stories
+
+- As a user, I want to see a list of my previous API calls, so that I can see the results again, quickly
+
+### Application Flow
+
+- User enters an API URL
+- Chooses a REST Method
+- Clicks the “Go” button
+- Application fetches data from the URL given, with the method specified
+- Application stores the API request and returned data into state
+- Updates the list of previous API calls
+- Application Displays the response headers and results separately
+  - Both headers and results should be “pretty printed” JSON
+
+After finishing the lab I was able to have a lot of fun styling my page and adding some cool features.  
+
+Things a user should do:
+
+- Click on my name down in the footer
+- After results are rendered, click on the "Hide Results" button
+- Click on the "Show History" button
+
+Here is a [link](https://andresmillsgallego.github.io/resty/) to my fully deployed site
+
+Here is a snippet of my working `reducer` code:
+
+```JavaScript
+export const reducer = (state = initialState, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case 'Add':
+      return {...state, url: payload.url, method: payload.method, body: payload.requestBody, history: [...state.history, payload]}
+    case 'Results':
+      return{...state, results: [payload]}
+    default:
+      return state;
+  }
+}
+```
