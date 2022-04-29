@@ -1,55 +1,88 @@
 import React from 'react';
 import './app.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 
-// Let's talk about using index.js and some other name in the component folder
-// There's pros and cons for each way of doing this ...
 import Header from './components/header';
 import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
 
+export const initialState = {
+  url: '',
+  method: '',
+  body: {},
+  results: null,
+  history: [],
+  isLoading: false,
+}
+
+export const reducer = (state = initialState, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case 'Add':
+      return {...state, url: payload.url, method: payload.method, body: payload.requestBody, history: [...state.history, payload]}
+    case 'Results':
+      return{...state, results: [payload]}
+    default:
+      return state;
+  }
+}
+
 function App() {
 
   let [data, setData] = useState(null);
   let [requestParams, setRequestParams] = useState({});
+
+  let [state, dispatch] = useReducer(reducer, initialState);
+
+  let updateRequestParams = (requestParams) => {
+    dispatch({ type: 'Add', payload: requestParams})
+  }
   
-  useEffect(async () => {
-    if (requestParams.method) {
-      try {
-        console.log('GET request initiated!!')
-        let results = await axios.get(requestParams.url);
-        setData({
+  let updateResults = (results) => {
+    dispatch({ type: 'Results', payload: {results}})
+  }
+
+  let handleRequest = () => {
+    if (state.url) {
+      axios({
+        url: state.url,
+        method: state.method || 'get',
+        data: state.body || {},
+      }).then(results => {
+        updateResults({
           count: results.data.count,
           headers: results.headers,
           results: results.data.results,
         })
-      } catch (error) {
-        console.log('Error with your GET request', error.message)
-      }
+        
+      })
     }
-    
-  }, [requestParams.url]);
+  }
 
-
+  useEffect(handleRequest, [state.url]);
+  
   const callApi = (requestParams) => {
-    let url = requestParams.url;
-    let method = requestParams.method;
     console.log(requestParams)
-    setRequestParams(requestParams)
+    updateRequestParams(requestParams)
   }
   
 
   return (
     <React.Fragment>
       <Header />
-      <section className={requestParams.method ? 'showParams' : null}>
-        <div>Request Method: {requestParams.method ? requestParams.method.toUpperCase() : requestParams.method}</div>
-        <div>URL: {requestParams.url}</div>
+      <section className={state.method ? 'showParams' : null}>
+        <div>Request Method: {state.method ? state.method.toUpperCase() : state.method}</div>
+        <div>URL: {state.url}</div>
       </section>
       <Form handleApiCall={callApi} />
-      <Results data={data} />
+      <Results 
+        data={state.results} 
+        history={state.history}
+        callApi={callApi}
+      />
       <Footer />
     </React.Fragment>
   );

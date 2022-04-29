@@ -8,3 +8,26 @@
   max-height: 50vh;
   overflow:auto;
 }
+
+.history-results {
+  margin: auto;
+  color: navy;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.history-results li {
+  margin-bottom: 1rem;
+  border-bottom: 3px double transparent;
+}
+
+.history-results li:hover {
+  cursor: pointer;
+  color: deeppink;
+  border-bottom: 3px double dodgerblue;
+}
+
+button {
+  width: 75%;
+  margin: auto;
+  border-radius: 3px;
+}

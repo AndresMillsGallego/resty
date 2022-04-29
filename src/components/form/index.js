@@ -23,6 +23,7 @@ function Form({ handleApiCall }) {
   }
 
   const handleSubmit = (e) => {
+    const form = document.getElementById('form')
     e.preventDefault();
     const formData = {
       method: method,
@@ -32,11 +33,12 @@ function Form({ handleApiCall }) {
     
     setSelected(false)
     handleApiCall(formData);
+    form.reset();
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="form">
         <div>
           <label id='input'>
             <span>URL: </span>
